@@ -15,4 +15,9 @@ HMM被广泛的应用在语音识别领域，但是如果使用MLE(最大似然�
 HMM
 ---
 
-在常见的离散HMM模型中，语音向量会在前端处理中被量化。每个向量被一个距离它最近的向量 :math:`y_i` 替换。这个向量是一个预先指定的有限集合 :math:`\mathfrak(Y)` ，其基为 :math:`I`. 让 :math:`\mathfrak(Q)` 作为一个有 :math:`K` 个不同状态的集合，每个状态为 :math:`q(k)` ，其中 :math:`k=1,...,K` 。马尔科夫模型是由这些状态，按照预定的拓扑结构组成的。如果HMM使用MLE评价标准来训练，那么模型的参数以最大化 :math:`P(X|W)` , 其中 :math:`X` 是训练使用的量化声学向量 :math:`x_n \in \mathfrak{Y}` ，其中 :math:`n=1,...,N` ,而 :math:`W` 与马尔科夫模型的 :math:`L` 个状态 :math:`q_l \in \mathfrak{Q}` 相关， 其中 :math:`l=1,..., L` 。
+在常见的离散HMM模型中，语音向量会在前端处理中被量化。每个向量被一个距离它最近的向量 :math:`y_i` 替换。这个向量是一个预先指定的有限集合 :math:`\mathfrak{Y}` ，其基为 :math:`I`. 让 :math:`\mathfrak{Q}` 作为一个有 :math:`K` 个不同状态的集合，每个状态为 :math:`q(k)` ，其中 :math:`k=1,...,K` 。马尔科夫模型是由这些状态，按照预定的拓扑结构组成的。如果HMM使用MLE评价标准来训练，那么模型的参数以最大化 :math:`P(X|W)` , 其中 :math:`X` 是训练使用的量化声学向量 :math:`x_n \in \mathfrak{Y}` ，其中 :math:`n=1,...,N` ,而 :math:`W` 与马尔科夫模型的 :math:`L` 个状态 :math:`q_l \in \mathfrak{Q}` 相关， 其中 :math:`l=1,..., L` 。当然， :math:`L \ne K \ne N` ，因为同样的状态可能在不同的位置出现多次， 也因为所有的状态不一定非要在一个模型里全部出现，也因为状态间的循环是被允许的。不考虑特定HMM模型的parenthesized index，我们将状态 :math:`q_l` 在指定时间 :math:`n \in [1,N]` 出现定义为 :math:`q_l^n` 。 由于 :math:`q_l^n` 是一个互斥实践，我们可以将概率 :math:`P(X|W)` 改写成，对于任何一个 :math:`n` :
+
+.. math:: P(X|W)=\sum_{l=1}^L P(q_l^n, X|W),
+
+这里， :math:`P(q_l^n, X|W)` 表示 :math:`X` 被参数 :math:`W` 限制的模型，同时 :math:`x_n` 与状态 :math:`q_l` 关联的概率。 最大化上式可以使用Baum-Welch算法中的前向后向算法循环计算出来。
+
