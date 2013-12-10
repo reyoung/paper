@@ -15,4 +15,4 @@ HMM被广泛的应用在语音识别领域，但是如果使用MLE(最大似然�
 HMM
 ---
 
-在常见的离散HMM模型中，语音向量会在前端处理中被量化。每个向量被一个距离它最近的向量 :math:`y_i` 替换。这个向量是一个预先指定的有限集合 :math:`\mathfrak(Y)` ，其基为 :math:`I`. 让 :math:`\mathfrak(Q)`作为一个有 :math:`K` 个不同状态的集合，每个状态为 :math:`q(k)`，其中 :math:`k=1,...,K`。
+在常见的离散HMM模型中，语音向量会在前端处理中被量化。每个向量被一个距离它最近的向量 :math:`y_i` 替换。这个向量是一个预先指定的有限集合 :math:`\mathfrak(Y)` ，其基为 :math:`I`. 让 :math:`\mathfrak(Q)` 作为一个有 :math:`K` 个不同状态的集合，每个状态为 :math:`q(k)` ，其中 :math:`k=1,...,K` 。马尔科夫模型是由这些状态，按照预定的拓扑结构组成的。如果HMM使用MLE评价标准来训练，那么模型的参数以最大化 :math:`P(X|W)` , 其中 :math:`X` 是训练使用的量化声学向量 :math:`x_n \in \mathfrak{Y}` ，其中 :math:`n=1,...,N` ,而 :math:`W` 与马尔科夫模型的 :math:`L` 个状态 :math:`q_l \in \mathfrak{Q}` 相关， 其中 :math:`l=1,..., L` 。
